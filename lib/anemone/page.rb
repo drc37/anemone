@@ -59,7 +59,7 @@ module Anemone
       @links = []
       return @links if !doc
 
-      doc.search("//a[@href]").each do |a|
+      doc.css("a").each do |a|
         u = a['href']
         next if u.nil? or u.empty?
         abs = to_absolute(u) rescue next
