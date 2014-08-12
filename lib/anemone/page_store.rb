@@ -50,6 +50,7 @@ module Anemone
     # HTTP and HTTPS versions of a URL are considered to be the same page.
     def has_page?(url)
       schemes = %w(http https)
+      url = URI.parse(url) if (url.is_a? String)
       if schemes.include? url.scheme
         u = url.dup
         return schemes.any? { |s| u.scheme = s; has_key?(u) }
