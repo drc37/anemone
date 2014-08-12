@@ -153,7 +153,8 @@ module Anemone
     #
     def to_absolute(link)
       return nil if link.nil?
-
+      return link if link.include?("http")
+      
       # remove anchor
       link = URI.encode(URI.decode(link.to_s.gsub(/#[a-zA-Z0-9_-]*$/,'')))
 
