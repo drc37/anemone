@@ -63,7 +63,8 @@ module Anemone
         u = a['href']
         next if u.nil? or u.empty?
         abs = to_absolute(u) rescue next
-        @links << abs if in_domain?(abs)
+        # @links << abs if in_domain?(abs)
+        @links << abs
       end
       @links.uniq!
       @links
@@ -162,14 +163,6 @@ module Anemone
       absolute.path = '/' if absolute.path.empty?
 
       return absolute
-    end
-
-    #
-    # Returns +true+ if *uri* is in the same domain as the page, returns
-    # +false+ otherwise
-    #
-    def in_domain?(uri)
-      uri.host == @url.host
     end
 
     def marshal_dump
